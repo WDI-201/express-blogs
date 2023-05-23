@@ -3,42 +3,44 @@ const router = express.Router();
 
 const blogs = [
 	{
-		id: 1,
-		title: "First Blog",
-		description: "Description of the first blog",
-		author: "John Doe",
+		id: "blog1",
+		title: "Introduction to JavaScript",
+		description: "Learn the basics of JavaScript programming language.",
+		author: "Michael Johnson",
 		createdAt: "2023-05-22T19:16:00.821Z",
 		lastModified: "2023-05-22T19:16:00.821Z",
 	},
 	{
-		id: 2,
-		title: "Second Blog",
-		description: "Description of the second blog",
+		id: "blog2",
+		title: "Mastering React Framework",
+		description: "Become proficient in building web applications using React.",
 		author: "Jane Smith",
 		createdAt: "2023-05-22T19:16:00.821Z",
 		lastModified: "2023-05-22T19:16:00.821Z",
 	},
 	{
-		id: 3,
-		title: "Third Blog",
-		description: "Description of the third blog",
-		author: "Alex Johnson",
+		id: "blog3",
+		title: "Deep Dive into Node.js",
+		description:
+			"Explore the advanced concepts of Node.js and server-side development.",
+		author: "Michael Johnson",
 		createdAt: "2023-05-22T19:16:00.821Z",
 		lastModified: "2023-05-22T19:16:00.821Z",
 	},
 	{
-		id: 4,
-		title: "Fourth Blog",
-		description: "Description of the fourth blog",
+		id: "blog4",
+		title: "CSS Tricks for Web Designers",
+		description: "Discover useful CSS techniques to enhance your web designs.",
 		author: "Emily Davis",
 		createdAt: "2023-05-22T19:16:00.821Z",
 		lastModified: "2023-05-22T19:16:00.821Z",
 	},
 	{
-		id: 5,
-		title: "Fifth Blog",
-		description: "Description of the fifth blog",
-		author: "Michael Brown",
+		id: "blog5",
+		title: "Effective Database Management",
+		description:
+			"Learn best practices for managing databases and optimizing performance.",
+		author: "Robert Johnson",
 		createdAt: "2023-05-22T19:16:00.821Z",
 		lastModified: "2023-05-22T19:16:00.821Z",
 	},
@@ -55,7 +57,7 @@ router.get("/all-blogs", (req, res) => {
 
 router.delete("/delete-blog/:id", (req, res) => {
 	const delID = req.params.id;
-	const findIndex = blogs.findIndex((label) => label.id.toString() === delID);
+	const findIndex = blogs.findIndex((blog) => blog.id.toString() === delID);
 	if (findIndex === -1) {
 		return res.status(400).json({ success: false, message: "blog not found" });
 	}
@@ -63,5 +65,13 @@ router.delete("/delete-blog/:id", (req, res) => {
 
 	res.status(200).json({ success: true, data: "id deleted" });
 });
+router.get("/by-author/:authorName", (req, res) => {
+	console.log(req.params.authorName);
+	res.json({ name: req.params.authorName });
+});
+
+//get one blog route by id
+//get some blogs route by author
+//post one blog route
 
 module.exports = router;
